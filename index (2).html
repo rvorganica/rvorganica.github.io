@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfume Blender Calculator — Free Fragrance Formula Tool | RV Organica</title>
+<meta name="description" content="Free perfume blender calculator for DIY perfumers and formulators. Calculate top, middle, and base note ratios, fragrance load percentages, and batch sizes. Powered by RV Organica.">
+<meta name="keywords" content="perfume blender calculator, fragrance formula calculator, top middle base note calculator, fragrance load calculator, DIY perfume making, essential oil blend calculator, perfume making tool">
+<meta property="og:title" content="Free Perfume Blender Calculator — RV Organica">
+<meta property="og:description" content="Calculate your perfect fragrance formula. Top, middle, base notes + batch sizing tool for perfumers.">
+<meta property="og:url" content="https://rvorganica.com/perfume-blender-calculator">
+<link rel="canonical" href="https://rvorganica.com/perfume-blender-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Perfume Blender Calculator",
+  "description": "Free online perfume blending calculator for DIY perfumers. Calculate top, middle, base note ratios and fragrance load percentages.",
+  "url": "https://rvorganica.com/perfume-blender-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"},
+  "author": {"@type": "Organization", "name": "RV Organica", "url": "https://rvorganica.com"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --amber-50: #fef9f0;
+    --amber-100: #fdefd6;
+    --amber-200: #f9d99a;
+    --amber-400: #e8a830;
+    --amber-600: #b5780e;
+    --amber-800: #7a4e08;
+    --teal-50: #f0faf7;
+    --teal-400: #2aaa85;
+    --teal-600: #1a7d62;
+    --stone-50: #fafaf9;
+    --stone-100: #f5f4f2;
+    --stone-200: #e8e6e1;
+    --stone-400: #a8a29e;
+    --stone-600: #6b6560;
+    --stone-800: #3d3935;
+    --stone-900: #1c1a17;
+    --rose-400: #c97a80;
+    --rose-600: #9c4e55;
+    --blue-400: #6b9ec9;
+    --blue-600: #3d6f99;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--stone-50);
+    color: var(--stone-800);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Header */
+  .site-header {
+    background: var(--stone-900);
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .logo span { color: var(--amber-400); }
+  .header-tag {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stone-400);
+    font-weight: 400;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--stone-900);
+    padding: 52px 24px 44px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber-400);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero p {
+    color: var(--stone-400);
+    font-size: 15px;
+    max-width: 480px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* Main layout */
+  .main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* Section title */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--stone-900);
+    margin-bottom: 6px;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: var(--stone-400);
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+
+  /* Card */
+  .card {
+    background: #fff;
+    border: 1px solid var(--stone-200);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 28px;
+  }
+
+  /* Tab strip */
+  .tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--stone-200);
+    margin-bottom: 28px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    color: var(--stone-400);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    margin-bottom: -1px;
+    letter-spacing: 0.01em;
+  }
+  .tab-btn:hover { color: var(--stone-800); }
+  .tab-btn.active {
+    color: var(--amber-600);
+    border-bottom-color: var(--amber-400);
+    font-weight: 500;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Note Pyramid */
+  .pyramid-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 640px) {
+    .pyramid-grid { grid-template-columns: 1fr; }
+  }
+  .note-tier {
+    border-radius: 10px;
+    padding: 18px;
+    border: 1px solid;
+  }
+  .note-tier.top { background: #fff9f0; border-color: #f9d99a; }
+  .note-tier.middle { background: #f0faf7; border-color: #a3d9c8; }
+  .note-tier.base { background: #fdf5f5; border-color: #e8c5c8; }
+
+  .tier-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .tier-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top .tier-label { color: var(--amber-600); }
+  .middle .tier-label { color: var(--teal-600); }
+  .base .tier-label { color: var(--rose-600); }
+
+  .tier-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .top .tier-pct { color: var(--amber-600); }
+  .middle .tier-pct { color: var(--teal-600); }
+  .base .tier-pct { color: var(--rose-600); }
+
+  .tier-hint {
+    font-size: 11px;
+    color: var(--stone-400);
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+
+  .oil-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .oil-name-input {
+    flex: 1;
+    min-width: 0;
+    padding: 7px 10px;
+    border: 1px solid var(--stone-200);
+    border-radius: 7px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--stone-800);
+    background: #fff;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .oil-name-input:focus { border-color: var(--amber-400); }
+  .oil-pct-input {
+    width: 58px;
+    padding: 7px 8px;
+    border: 1px solid var(--stone-200);
+    border-radius: 7px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--stone-800);
+    background: #fff;
+    text-align: center;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .oil-pct-input:focus { border-color: var(--amber-400); }
+  .remove-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: none;
+    border: 1px solid var(--stone-200);
+    color: var(--stone-400);
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+    line-height: 1;
+  }
+  .remove-btn:hover { background: #fef2f2; color: var(--rose-600); border-color: var(--rose-400); }
+
+  .add-btn {
+    width: 100%;
+    padding: 7px;
+    border-radius: 7px;
+    background: none;
+    border: 1px dashed var(--stone-200);
+    color: var(--stone-400);
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    margin-top: 4px;
+  }
+  .add-btn:hover { background: var(--stone-100); color: var(--stone-600); border-color: var(--stone-400); }
+
+  /* Total bar */
+  .total-bar {
+    background: var(--stone-100);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .total-pct {
+    font-size: 13px;
+    color: var(--stone-600);
+  }
+  .total-pct strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--stone-900);
+  }
+  .total-ok { color: var(--teal-600); font-size: 12px; font-weight: 500; }
+  .total-warn { color: #c0600a; font-size: 12px; font-weight: 500; }
+
+  /* Fragrance Load */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 500px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--stone-600);
+    margin-bottom: 7px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .form-input, .form-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--stone-200);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--stone-800);
+    background: #fff;
+    transition: border-color 0.2s;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-input:focus, .form-select:focus { border-color: var(--amber-400); }
+
+  .select-wrapper {
+    position: relative;
+  }
+  .select-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid var(--stone-400);
+    pointer-events: none;
+  }
+
+  /* Results */
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .result-card {
+    background: var(--stone-100);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .result-label {
+    font-size: 11px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--stone-400);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .result-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--stone-900);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .result-unit {
+    font-size: 12px;
+    color: var(--stone-400);
+    font-weight: 300;
+  }
+  .result-card.highlight { background: #fff9f0; }
+  .result-card.highlight .result-value { color: var(--amber-600); }
+
+  /* Concentration guide table */
+  .guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .guide-table th {
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--stone-400);
+    border-bottom: 1px solid var(--stone-200);
+  }
+  .guide-table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--stone-100);
+    vertical-align: middle;
+  }
+  .guide-table tr:last-child td { border-bottom: none; }
+  .guide-table tr:hover td { background: var(--stone-50); }
+  .guide-table .name { font-weight: 500; color: var(--stone-800); }
+  .guide-table .pct { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--amber-600); }
+  .guide-table .note { font-size: 12px; color: var(--stone-400); font-weight: 300; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .badge-warm { background: #fef3c7; color: #92400e; }
+  .badge-cool { background: #d1fae5; color: #065f46; }
+  .badge-soft { background: #ede9fe; color: #4c1d95; }
+
+  /* Dilution tab */
+  .dilution-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--stone-100);
+    gap: 16px;
+  }
+  .dilution-row:last-child { border-bottom: none; }
+  .dilution-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dilution-name { font-weight: 500; color: var(--stone-800); font-size: 14px; min-width: 140px; }
+  .dilution-pct { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--stone-800); min-width: 60px; }
+  .dilution-desc { font-size: 13px; color: var(--stone-400); font-weight: 300; }
+
+  /* Batch note breakdown */
+  .breakdown-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  .breakdown-table th {
+    text-align: left;
+    padding: 9px 12px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--stone-400);
+    font-weight: 500;
+    border-bottom: 1px solid var(--stone-200);
+  }
+  .breakdown-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--stone-100);
+  }
+  .breakdown-table tr:last-child td { border-bottom: none; }
+  .breakdown-table .oil-name-cell { color: var(--stone-700); font-weight: 400; }
+  .breakdown-table .tier-cell { font-size: 11px; color: var(--stone-400); font-weight: 300; }
+  .breakdown-table .qty-cell { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--amber-600); }
+
+  /* CTA */
+  .cta-strip {
+    background: var(--stone-900);
+    border-radius: 12px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  .cta-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .cta-text p {
+    font-size: 13px;
+    color: var(--stone-400);
+    font-weight: 300;
+    max-width: 360px;
+  }
+  .cta-link {
+    display: inline-block;
+    padding: 10px 22px;
+    background: var(--amber-400);
+    color: var(--stone-900);
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .cta-link:hover { background: var(--amber-200); }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 12px;
+    color: var(--stone-400);
+    border-top: 1px solid var(--stone-200);
+    font-weight: 300;
+  }
+  footer a { color: var(--amber-600); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* Article / SEO content */
+  .seo-content {
+    max-width: 680px;
+    margin: 60px auto 0;
+    border-top: 1px solid var(--stone-200);
+    padding-top: 48px;
+  }
+  .seo-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--stone-900);
+    margin-bottom: 14px;
+    margin-top: 36px;
+  }
+  .seo-content h3 {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--stone-700);
+    margin-bottom: 10px;
+    margin-top: 24px;
+  }
+  .seo-content p {
+    font-size: 15px;
+    color: var(--stone-600);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+  .seo-content ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 16px;
+  }
+  .seo-content ul li {
+    font-size: 15px;
+    color: var(--stone-600);
+    line-height: 1.8;
+    font-weight: 300;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  .seo-content ul li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--amber-400);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="https://rvorganica.com" class="logo">RV <span>Organica</span></a>
+    <span class="header-tag">Free Tools</span>
+  </div>
+</header>
+
+<div class="hero">
+  <p class="hero-eyebrow">Fragrance Formulation</p>
+  <h1>Perfume Blender Calculator</h1>
+  <p>Build your fragrance formula the right way — balance top, middle, and base notes, calculate batch quantities, and get your dilution right the first time.</p>
+</div>
+
+<main class="main">
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('blend')">Note Pyramid</button>
+    <button class="tab-btn" onclick="switchTab('load')">Fragrance Load</button>
+    <button class="tab-btn" onclick="switchTab('batch')">Batch Breakdown</button>
+    <button class="tab-btn" onclick="switchTab('guide')">Concentration Guide</button>
+    <button class="tab-btn" onclick="switchTab('dilution')">Dilution Reference</button>
+  </div>
+
+  <!-- Tab 1: Note Pyramid -->
+  <div class="tab-panel active" id="tab-blend">
+    <div style="margin-bottom:8px;">
+      <h2 class="section-title">Note Pyramid Builder</h2>
+      <p class="section-sub">Add your fragrance oils to each note tier. The standard ratio is 20–30% top, 40–60% middle, 15–25% base.</p>
+    </div>
+
+    <div class="pyramid-grid">
+      <!-- Top Notes -->
+      <div class="note-tier top">
+        <div class="tier-header">
+          <span class="tier-label">Top Notes</span>
+          <span class="tier-pct" id="top-pct">0%</span>
+        </div>
+        <p class="tier-hint">First impression. Evaporate within 15–30 min. Citrus, herbs, light florals.</p>
+        <div id="top-oils">
+          <div class="oil-row">
+            <input class="oil-name-input" type="text" placeholder="e.g. Bergamot" oninput="recalc()">
+            <input class="oil-pct-input" type="number" placeholder="%" min="0" max="100" step="0.5" oninput="recalc()">
+            <button class="remove-btn" onclick="removeOil(this)">×</button>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addOil('top-oils')">+ Add oil</button>
+      </div>
+
+      <!-- Middle Notes -->
+      <div class="note-tier middle">
+        <div class="tier-header">
+          <span class="tier-label">Middle Notes</span>
+          <span class="tier-pct" id="mid-pct">0%</span>
+        </div>
+        <p class="tier-hint">The heart. Bloom after 20–60 min. Rose, jasmine, spices, geranium.</p>
+        <div id="mid-oils">
+          <div class="oil-row">
+            <input class="oil-name-input" type="text" placeholder="e.g. Rose" oninput="recalc()">
+            <input class="oil-pct-input" type="number" placeholder="%" min="0" max="100" step="0.5" oninput="recalc()">
+            <button class="remove-btn" onclick="removeOil(this)">×</button>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addOil('mid-oils')">+ Add oil</button>
+      </div>
+
+      <!-- Base Notes -->
+      <div class="note-tier base">
+        <div class="tier-header">
+          <span class="tier-label">Base Notes</span>
+          <span class="tier-pct" id="base-pct">0%</span>
+        </div>
+        <p class="tier-hint">The anchor. Last 6+ hours. Sandalwood, musk, amber, vetiver.</p>
+        <div id="base-oils">
+          <div class="oil-row">
+            <input class="oil-name-input" type="text" placeholder="e.g. Sandalwood" oninput="recalc()">
+            <input class="oil-pct-input" type="number" placeholder="%" min="0" max="100" step="0.5" oninput="recalc()">
+            <button class="remove-btn" onclick="removeOil(this)">×</button>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addOil('base-oils')">+ Add oil</button>
+      </div>
+    </div>
+
+    <!-- Total -->
+    <div class="total-bar">
+      <div>
+        <p style="font-size:12px;color:var(--stone-400);margin-bottom:3px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;">Total formula</p>
+        <span class="total-pct">All notes combined: <strong id="total-all">0%</strong></span>
+      </div>
+      <span id="total-status" class="total-ok"></span>
+    </div>
+  </div>
+
+  <!-- Tab 2: Fragrance Load -->
+  <div class="tab-panel" id="tab-load">
+    <h2 class="section-title">Fragrance Load Calculator</h2>
+    <p class="section-sub">Enter your batch size and product type to get exact quantities for your fragrance oil and carrier.</p>
+
+    <div class="card">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Product Type</label>
+          <div class="select-wrapper">
+            <select class="form-select" id="prod-type" onchange="calcLoad()">
+              <option value="12">Eau de Parfum (EDP) — 12%</option>
+              <option value="8">Eau de Toilette (EDT) — 8%</option>
+              <option value="5">Eau de Cologne (EDC) — 5%</option>
+              <option value="20">Perfume Oil / Attar — 20%</option>
+              <option value="3">Body Mist — 3%</option>
+              <option value="6" selected>Scented Candle — 6%</option>
+              <option value="3">Cold Process Soap — 3%</option>
+              <option value="1.5">Lotion / Cream — 1.5%</option>
+              <option value="2">Shampoo / Body Wash — 2%</option>
+              <option value="custom">Custom %</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Batch Size (grams)</label>
+          <input class="form-input" type="number" id="batch-size" placeholder="e.g. 500" value="500" min="1" oninput="calcLoad()">
+        </div>
+      </div>
+
+      <div id="custom-pct-row" style="display:none;margin-bottom:20px;">
+        <div class="form-group">
+          <label>Custom Fragrance %</label>
+          <input class="form-input" type="number" id="custom-pct" placeholder="e.g. 10" min="0.1" max="50" step="0.1" oninput="calcLoad()">
+        </div>
+      </div>
+
+      <div class="result-grid">
+        <div class="result-card highlight">
+          <p class="result-label">Fragrance Oil</p>
+          <p class="result-value" id="fo-grams">—</p>
+          <p class="result-unit">grams</p>
+        </div>
+        <div class="result-card">
+          <p class="result-label">Carrier / Base</p>
+          <p class="result-value" id="carrier-grams">—</p>
+          <p class="result-unit">grams</p>
+        </div>
+        <div class="result-card">
+          <p class="result-label">Concentration</p>
+          <p class="result-value" id="conc-display">—</p>
+          <p class="result-unit">%</p>
+        </div>
+        <div class="result-card">
+          <p class="result-label">Total Batch</p>
+          <p class="result-value" id="total-batch-display">—</p>
+          <p class="result-unit">grams</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:16px;background:var(--amber-50);border:1px solid var(--amber-200);border-radius:10px;font-size:13px;color:var(--amber-800);line-height:1.7;">
+      <strong style="font-weight:500;">Note on candle fragrance load:</strong> The 6% figure is a safe starting point for most wax types. Paraffin typically holds 6–10%, soy wax 6–8%, and coconut wax up to 10%. Always do a test pour before scaling up.
+    </div>
+  </div>
+
+  <!-- Tab 3: Batch Breakdown -->
+  <div class="tab-panel" id="tab-batch">
+    <h2 class="section-title">Full Batch Breakdown</h2>
+    <p class="section-sub">Combines your note pyramid with your batch size to show exactly how many grams of each oil to weigh out.</p>
+
+    <div class="card">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Total Batch Size (grams)</label>
+          <input class="form-input" type="number" id="batch-size-2" placeholder="e.g. 100" value="100" min="1" oninput="calcBatch()">
+        </div>
+        <div class="form-group">
+          <label>Total Fragrance Load (%)</label>
+          <input class="form-input" type="number" id="fo-pct-2" placeholder="e.g. 20" value="20" min="0.1" max="100" step="0.1" oninput="calcBatch()">
+        </div>
+      </div>
+
+      <div id="batch-output">
+        <p style="color:var(--stone-400);font-size:13px;font-style:italic;">Add oils in the Note Pyramid tab first, then come back here to see the full breakdown.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab 4: Concentration Guide -->
+  <div class="tab-panel" id="tab-guide">
+    <h2 class="section-title">Fragrance Concentration Guide</h2>
+    <p class="section-sub">Standard industry concentration ranges by product category. Use these as starting points — final amounts depend on the specific oils and your preferred intensity.</p>
+
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="guide-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Fragrance %</th>
+            <th>Carrier</th>
+            <th>Longevity</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">Perfume / Extrait</td>
+            <td class="pct">15–40%</td>
+            <td>Perfumer's alcohol</td>
+            <td>8–12 hours</td>
+            <td><span class="badge badge-warm">Alcohol</span></td>
+          </tr>
+          <tr>
+            <td class="name">Eau de Parfum (EDP)</td>
+            <td class="pct">10–20%</td>
+            <td>Perfumer's alcohol</td>
+            <td>6–8 hours</td>
+            <td><span class="badge badge-warm">Alcohol</span></td>
+          </tr>
+          <tr>
+            <td class="name">Eau de Toilette (EDT)</td>
+            <td class="pct">5–15%</td>
+            <td>Perfumer's alcohol</td>
+            <td>4–6 hours</td>
+            <td><span class="badge badge-warm">Alcohol</span></td>
+          </tr>
+          <tr>
+            <td class="name">Eau de Cologne (EDC)</td>
+            <td class="pct">2–6%</td>
+            <td>Perfumer's alcohol</td>
+            <td>2–4 hours</td>
+            <td><span class="badge badge-warm">Alcohol</span></td>
+          </tr>
+          <tr>
+            <td class="name">Perfume Oil / Attar</td>
+            <td class="pct">15–30%</td>
+            <td>Jojoba / DPG</td>
+            <td>6–10 hours</td>
+            <td><span class="badge badge-cool">Oil</span></td>
+          </tr>
+          <tr>
+            <td class="name">Body Mist</td>
+            <td class="pct">1–4%</td>
+            <td>Alcohol + water</td>
+            <td>1–3 hours</td>
+            <td><span class="badge badge-warm">Alcohol</span></td>
+          </tr>
+          <tr>
+            <td class="name">Scented Candle</td>
+            <td class="pct">5–10%</td>
+            <td>Wax base</td>
+            <td>Ambient</td>
+            <td><span class="badge badge-soft">Wax</span></td>
+          </tr>
+          <tr>
+            <td class="name">Cold Process Soap</td>
+            <td class="pct">2–4%</td>
+            <td>Soap base</td>
+            <td>On skin</td>
+            <td><span class="badge badge-cool">Oil</span></td>
+          </tr>
+          <tr>
+            <td class="name">Lotion / Cream</td>
+            <td class="pct">0.5–2%</td>
+            <td>Emulsion base</td>
+            <td>On skin</td>
+            <td><span class="badge badge-cool">Oil</span></td>
+          </tr>
+          <tr>
+            <td class="name">Shampoo / Body Wash</td>
+            <td class="pct">1–3%</td>
+            <td>Surfactant base</td>
+            <td>Rinse-off</td>
+            <td><span class="badge badge-cool">Oil</span></td>
+          </tr>
+          <tr>
+            <td class="name">Reed Diffuser</td>
+            <td class="pct">20–35%</td>
+            <td>DPG / dipropylene glycol</td>
+            <td>Ambient</td>
+            <td><span class="badge badge-cool">Oil</span></td>
+          </tr>
+          <tr>
+            <td class="name">Room Spray</td>
+            <td class="pct">5–15%</td>
+            <td>Alcohol + water</td>
+            <td>Ambient</td>
+            <td><span class="badge badge-warm">Alcohol</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab 5: Dilution Reference -->
+  <div class="tab-panel" id="tab-dilution">
+    <h2 class="section-title">Essential Oil Dilution Reference</h2>
+    <p class="section-sub">Safe dilution rates for essential oils when used on skin. These are general guidelines — always check individual oil safety data.</p>
+
+    <div class="card">
+      <div class="dilution-row">
+        <div class="dilution-dot" style="background:#f9d99a;"></div>
+        <div class="dilution-name">Facial products</div>
+        <div class="dilution-pct">0.5–1%</div>
+        <div class="dilution-desc">Serums, face creams, under-eye products. Sensitive area — stay minimal.</div>
+      </div>
+      <div class="dilution-row">
+        <div class="dilution-dot" style="background:#5dcaa5;"></div>
+        <div class="dilution-name">Sensitive skin</div>
+        <div class="dilution-pct">1%</div>
+        <div class="dilution-desc">Elderly, children (3+), pregnancy. Some essential oils are not safe in pregnancy at all.</div>
+      </div>
+      <div class="dilution-row">
+        <div class="dilution-dot" style="background:#8bc4e0;"></div>
+        <div class="dilution-name">Daily body care</div>
+        <div class="dilution-pct">2–3%</div>
+        <div class="dilution-desc">Lotions, body oils, massage oils for regular use. Most commonly used range.</div>
+      </div>
+      <div class="dilution-row">
+        <div class="dilution-dot" style="background:#c97a80;"></div>
+        <div class="dilution-name">Targeted massage</div>
+        <div class="dilution-pct">3–5%</div>
+        <div class="dilution-desc">Pain relief, muscle blends, localized application. Short-term use on limited areas.</div>
+      </div>
+      <div class="dilution-row">
+        <div class="dilution-dot" style="background:#b5780e;"></div>
+        <div class="dilution-name">Acute / spot treatment</div>
+        <div class="dilution-pct">5–10%</div>
+        <div class="dilution-desc">Short-term use only. Specific conditions. Not for children or pregnant women.</div>
+      </div>
+      <div class="dilution-row">
+        <div class="dilution-dot" style="background:#888780;"></div>
+        <div class="dilution-name">Professional use only</div>
+        <div class="dilution-pct">&gt;10%</div>
+        <div class="dilution-desc">Requires professional training. Risk of sensitisation and skin damage without expertise.</div>
+      </div>
+    </div>
+
+    <div style="padding:16px;background:var(--teal-50);border:1px solid #a3d9c8;border-radius:10px;font-size:13px;color:var(--teal-600);line-height:1.7;">
+      Fragrance oils (synthetic) and essential oils behave differently. These dilutions apply specifically to essential oils. Most fragrance oils can be used at slightly higher rates in skin-safe products, but always check the IFRA guidelines for each fragrance before use.
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <div class="cta-text">
+      <h3>Need fragrance oils for your formula?</h3>
+      <p>RV Organica supplies fragrance oils, essential oils, carrier oils, and soap bases — bulk and private label from Panipat, India.</p>
+    </div>
+    <a href="https://rvorganica.com" class="cta-link" target="_blank">Browse Catalogue →</a>
+  </div>
+
+  <!-- SEO Content -->
+  <article class="seo-content">
+    <h2>How to Use This Perfume Blender Calculator</h2>
+    <p>This tool is built for DIY perfumers, soap makers, candle crafters, and anyone formulating their own fragrance products at home or at a small-batch level. It covers four main things: building a note pyramid, calculating your fragrance load by product type, breaking down exact oil quantities per batch, and looking up safe dilution percentages.</p>
+
+    <h3>The note pyramid and why it matters</h3>
+    <p>A fragrance has three structural layers — top notes, middle notes, and base notes. Top notes hit you first but fade quickly (usually within 20–30 minutes). Middle notes, sometimes called the "heart," define most of what you smell for the next hour or two. Base notes anchor everything — they last the longest and give the fragrance depth and longevity.</p>
+    <p>There is no single correct ratio, but a common starting point is 20–30% top notes, 40–60% middle notes, and 15–25% base notes. Enter your oils and their percentages in the Note Pyramid tab. The calculator will warn you if your total goes over or under 100%.</p>
+
+    <h3>Fragrance load — how much oil to add</h3>
+    <p>The fragrance load is the percentage of fragrance oil relative to your total batch. Get it too low and the scent barely registers; too high and you risk irritation, poor performance, or wasted material. The Fragrance Load tab has standard ranges for the most common product types pre-loaded. Just change the batch size and product type, and the calculator handles the rest.</p>
+
+    <h3>Common oils used in each note tier</h3>
+    <ul>
+      <li>Top notes: bergamot, lemon, orange, grapefruit, lime, eucalyptus, peppermint, petitgrain</li>
+      <li>Middle notes: rose, jasmine, geranium, ylang ylang, lavender, clary sage, clove, cinnamon, cardamom</li>
+      <li>Base notes: sandalwood, vetiver, cedarwood, patchouli, frankincense, benzoin, amber, musk, vanilla</li>
+    </ul>
+
+    <h3>Fragrance oils vs essential oils</h3>
+    <p>Essential oils are extracted directly from plants — steam distilled, cold pressed, or CO2 extracted. Fragrance oils are synthetic or semi-synthetic blends, typically more affordable and often more stable in finished products like candles and soaps. Both can work well depending on what you are making. Essential oils come with more safety restrictions (especially during pregnancy), while fragrance oils require checking IFRA guidelines.</p>
+
+    <h3>About RV Organica</h3>
+    <p>Most people know us as RV Organica. That is our brand. The company on paper is RV International, registered on May 13, 2024, in Panipat, Haryana. We make essential oils, carrier oils, fragrance oils, hydrosols, soap bases, body butters, massage oils, waxes, and a whole list of raw materials that end up in cosmetic and personal care products.</p>
+  </article>
+
+</main>
+
+<footer>
+  <p>Made by <a href="https://rvorganica.com">RV Organica</a> — Essential & Fragrance Oil Manufacturer, Panipat, Haryana, India</p>
+</footer>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+  if (id === 'batch') calcBatch();
+}
+
+function addOil(containerId) {
+  var c = document.getElementById(containerId);
+  var row = document.createElement('div');
+  row.className = 'oil-row';
+  row.innerHTML = '<input class="oil-name-input" type="text" placeholder="Oil name" oninput="recalc()"><input class="oil-pct-input" type="number" placeholder="%" min="0" max="100" step="0.5" oninput="recalc()"><button class="remove-btn" onclick="removeOil(this)">×</button>';
+  c.appendChild(row);
+}
+
+function removeOil(btn) {
+  var row = btn.parentElement;
+  var container = row.parentElement;
+  if (container.querySelectorAll('.oil-row').length > 1) {
+    row.remove();
+    recalc();
+  }
+}
+
+function getTierTotal(containerId) {
+  var inputs = document.getElementById(containerId).querySelectorAll('.oil-pct-input');
+  var sum = 0;
+  inputs.forEach(function(i) { sum += parseFloat(i.value) || 0; });
+  return parseFloat(sum.toFixed(2));
+}
+
+function recalc() {
+  var top = getTierTotal('top-oils');
+  var mid = getTierTotal('mid-oils');
+  var base = getTierTotal('base-oils');
+  var total = parseFloat((top + mid + base).toFixed(2));
+
+  document.getElementById('top-pct').textContent = top + '%';
+  document.getElementById('mid-pct').textContent = mid + '%';
+  document.getElementById('base-pct').textContent = base + '%';
+  document.getElementById('total-all').textContent = total + '%';
+
+  var status = document.getElementById('total-status');
+  if (total === 100) {
+    status.textContent = '✓ Perfect — formula adds up to 100%';
+    status.className = 'total-ok';
+  } else if (total === 0) {
+    status.textContent = '';
+  } else if (total < 100) {
+    status.textContent = (100 - total).toFixed(2) + '% remaining to allocate';
+    status.className = 'total-warn';
+  } else {
+    status.textContent = 'Over by ' + (total - 100).toFixed(2) + '% — reduce some oils';
+    status.className = 'total-warn';
+  }
+}
+
+function calcLoad() {
+  var typeEl = document.getElementById('prod-type');
+  var batchEl = document.getElementById('batch-size');
+  var customRow = document.getElementById('custom-pct-row');
+
+  var isCustom = typeEl.value === 'custom';
+  customRow.style.display = isCustom ? 'block' : 'none';
+
+  var pct = isCustom ? (parseFloat(document.getElementById('custom-pct').value) || 0) : parseFloat(typeEl.value);
+  var batch = parseFloat(batchEl.value) || 0;
+
+  if (!batch || !pct) {
+    document.getElementById('fo-grams').textContent = '—';
+    document.getElementById('carrier-grams').textContent = '—';
+    document.getElementById('conc-display').textContent = '—';
+    document.getElementById('total-batch-display').textContent = '—';
+    return;
+  }
+
+  var fo = parseFloat((batch * pct / 100).toFixed(2));
+  var carrier = parseFloat((batch - fo).toFixed(2));
+
+  document.getElementById('fo-grams').textContent = fo;
+  document.getElementById('carrier-grams').textContent = carrier;
+  document.getElementById('conc-display').textContent = pct;
+  document.getElementById('total-batch-display').textContent = batch;
+}
+
+function getAllOils() {
+  var oils = [];
+  function fromTier(id, tier) {
+    var rows = document.getElementById(id).querySelectorAll('.oil-row');
+    rows.forEach(function(row) {
+      var name = row.querySelector('.oil-name-input').value.trim();
+      var pct = parseFloat(row.querySelector('.oil-pct-input').value) || 0;
+      if (name && pct > 0) oils.push({ name: name, tier: tier, pct: pct });
+    });
+  }
+  fromTier('top-oils', 'Top');
+  fromTier('mid-oils', 'Middle');
+  fromTier('base-oils', 'Base');
+  return oils;
+}
+
+function calcBatch() {
+  var batch = parseFloat(document.getElementById('batch-size-2').value) || 0;
+  var foPct = parseFloat(document.getElementById('fo-pct-2').value) || 0;
+  var oils = getAllOils();
+  var output = document.getElementById('batch-output');
+
+  var totalOilPct = 0;
+  oils.forEach(function(o) { totalOilPct += o.pct; });
+
+  if (!batch || !foPct || oils.length === 0) {
+    output.innerHTML = '<p style="color:var(--stone-400);font-size:13px;font-style:italic;">Add oils in the Note Pyramid tab first, then enter your batch size and fragrance load % here.</p>';
+    return;
+  }
+
+  var foGrams = batch * foPct / 100;
+
+  var rows = oils.map(function(oil) {
+    var oilGrams = totalOilPct > 0 ? parseFloat((foGrams * oil.pct / totalOilPct).toFixed(2)) : 0;
+    var tierColor = oil.tier === 'Top' ? 'var(--amber-600)' : oil.tier === 'Middle' ? 'var(--teal-600)' : 'var(--rose-600)';
+    return '<tr><td class="oil-name-cell">' + oil.name + '</td><td class="tier-cell" style="color:' + tierColor + '">' + oil.tier + '</td><td class="tier-cell">' + oil.pct + '%</td><td class="qty-cell">' + oilGrams + 'g</td></tr>';
+  }).join('');
+
+  var carrierGrams = parseFloat((batch - foGrams).toFixed(2));
+
+  output.innerHTML = '<table class="breakdown-table"><thead><tr><th>Oil</th><th>Note tier</th><th>Formula %</th><th>Quantity</th></tr></thead><tbody>' + rows + '</tbody></table>'
+    + '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px;">'
+    + '<div class="result-card highlight"><p class="result-label">Total Fragrance</p><p class="result-value">' + foGrams.toFixed(2) + '</p><p class="result-unit">grams</p></div>'
+    + '<div class="result-card"><p class="result-label">Carrier / Base</p><p class="result-value">' + carrierGrams + '</p><p class="result-unit">grams</p></div>'
+    + '<div class="result-card"><p class="result-label">Total Batch</p><p class="result-value">' + batch + '</p><p class="result-unit">grams</p></div>'
+    + '</div>';
+}
+
+calcLoad();
+</script>
+</body>
+</html>
